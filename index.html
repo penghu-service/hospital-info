@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>澎湖縣大型醫院聯合看診狀態網站</title>
+    <title>澎湖大型醫院看診進度查詢網</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* 定義字體：優先使用標楷體 */
@@ -58,7 +58,7 @@
         <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
         
         <h1 class="text-2xl md:text-4xl lg:text-5xl font-black text-white font-kai text-3d-shadow tracking-widest text-center z-10 flex-grow leading-tight md:leading-normal py-2">
-            澎湖縣大型醫院<br class="block md:hidden">聯合看診狀態網站
+            澎湖大型醫院<br class="block md:hidden">看診進度查詢網
         </h1>
 
         <div class="mt-2 md:mt-0 md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 shadow-lg animate-pulse-slow">
@@ -124,38 +124,32 @@
     </footer>
 
     <script>
-        // 真實感計數器 v3.0
-        // 修正：移除基礎灌水數字 (原本的+500)，讓數字從 0 開始隨時間緩慢增加
+        // 真實感計數器邏輯
         function updateCounter() {
             const now = new Date();
             
-            // 1. 計算今天過了多少分鐘 (00:00 起算)
+            // 1. 計算今天過了多少分鐘
             const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
             const currentTimestamp = now.getTime();
             const minutesPassed = Math.floor((currentTimestamp - startOfDay) / 60000);
             
-            // 2. 隨機波動參數 (使用日期當種子，確保重新整理時數字不會亂跳)
+            // 2. 隨機波動參數
             const seed = now.getDate() * 100 + now.getMonth(); 
             const randomFlux = (seed % 5) + 2; 
 
-            // 3. 計算邏輯：
-            // 假設平均每小時只有 5~8 人次瀏覽 (符合一般資訊看板的流量)
-            // 公式：(小時數 * 6) + (分鐘數 / 10)
-            // 舉例：早上 6:00 -> (6*6) = 36 人
-            // 舉例：晚上 20:00 -> (20*6) = 120 人
+            // 3. 計算邏輯：(小時數 * 6) + (分鐘數 / 8) + 波動
             let totalCount = Math.floor((now.getHours() * 6) + (now.getMinutes() / 8) + randomFlux);
 
-            // 4. 強制歸零機制：如果是新的一天剛開始 (00:00 ~ 00:05)，顯示個位數
+            // 4. 強制歸零機制 (午夜時分)
             if (now.getHours() === 0 && now.getMinutes() < 10) {
                 totalCount = Math.floor(now.getMinutes() / 2) + 1;
             }
 
-            // 更新畫面
             document.getElementById('view-counter').innerText = totalCount.toLocaleString();
         }
 
         updateCounter();
-        setInterval(updateCounter, 10000); // 每10秒檢查一次時間
+        setInterval(updateCounter, 10000);
     </script>
 
 </body>
