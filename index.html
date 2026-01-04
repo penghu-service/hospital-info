@@ -45,31 +45,49 @@
         /* 計數器動畫 */
         @keyframes pulse-subtle {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
+            50% { opacity: 0.85; }
         }
         .animate-pulse-slow {
             animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* 跑馬燈動畫 */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 15s linear infinite;
+            white-space: nowrap;
+            padding-left: 100%; /* 確保從最右邊開始 */
         }
     </style>
 </head>
 <body class="bg-[#ecfdf5] flex flex-col h-screen overflow-hidden font-sans">
 
-    <header class="h-auto min-h-[7rem] md:h-32 shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col md:flex-row items-center justify-center relative overflow-hidden px-4 py-3">
+    <header class="h-auto min-h-[9rem] md:h-40 shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col items-center justify-center relative overflow-hidden px-4 py-4">
         <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
         
-        <h1 class="text-2xl md:text-4xl lg:text-5xl font-black text-white font-kai text-3d-shadow tracking-widest text-center z-10 flex-grow leading-tight md:leading-normal py-2">
+        <div class="w-full overflow-hidden bg-red-800/30 text-red-100 text-sm md:text-base py-1 absolute top-0 left-0 z-30 backdrop-blur-sm">
+            <div class="animate-marquee font-bold tracking-wider">
+                ⚠️ 勿相信網路投資，小心詐騙！保護自己的財產安全。
+            </div>
+        </div>
+
+        <h1 class="text-2xl md:text-4xl lg:text-5xl font-black text-white font-kai text-3d-shadow tracking-widest text-center z-10 flex-grow leading-tight md:leading-normal py-4 mt-6 md:mt-8">
             澎湖大型醫院<br class="block md:hidden">看診進度查詢網
         </h1>
 
-        <div class="mt-2 md:mt-0 md:absolute md:right-4 md:top-1/2 md:-translate-y-1/2 z-20 flex items-center gap-2 bg-black/30 backdrop-blur-md border border-white/20 rounded-xl px-4 py-2 shadow-lg animate-pulse-slow">
+        <div class="mt-3 md:mt-0 md:absolute md:right-4 md:top-1/2 md:-translate-y-[-20%] z-20 flex items-center gap-2 bg-yellow-50/80 backdrop-blur-md border border-yellow-200/50 rounded-xl px-4 py-2 shadow-md animate-pulse-slow">
             <div class="flex flex-col items-end">
-                <span class="text-[12px] text-yellow-300 font-bold tracking-wider opacity-100">今日瀏覽次數</span>
+                <span class="text-[12px] text-yellow-700 font-bold tracking-wider opacity-90">今日瀏覽次數</span>
                 <div class="flex items-center gap-2">
                     <span class="relative flex h-2 w-2">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
                     </span>
-                    <span id="view-counter" class="text-xl font-bold text-white font-mono tracking-widest">0</span>
+                    <span id="view-counter" class="text-xl font-bold text-yellow-800 font-mono tracking-widest">0</span>
                 </div>
             </div>
         </div>
@@ -78,40 +96,30 @@
     <main class="flex-grow flex flex-col md:flex-row p-4 gap-4 md:gap-6 relative">
         
         <section class="flex-1 flex flex-col bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-teal-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            
             <div class="h-16 md:h-20 bg-gradient-to-r from-cyan-600 to-teal-600 flex items-center justify-between px-4 md:px-6 shrink-0 relative">
                 <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent opacity-70"></div>
-                
                 <h2 class="text-xl md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
                     三總澎湖分院
                 </h2>
-                
-                <a href="https://www.tsghph811.org.tw/" target="_blank" 
-                   class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-3 md:px-4 py-1.5 rounded-full hover:bg-white hover:text-teal-700 transition duration-300 shadow-sm font-medium">
+                <a href="https://www.tsghph811.org.tw/" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-3 md:px-4 py-1.5 rounded-full hover:bg-white hover:text-teal-700 transition duration-300 shadow-sm font-medium">
                     開新視窗 ↗
                 </a>
             </div>
-
             <div class="flex-grow relative bg-slate-50">
                 <iframe src="https://www.tsghph811.org.tw/" class="clinic-frame absolute inset-0" title="三總澎湖看診進度"></iframe>
             </div>
         </section>
 
         <section class="flex-1 flex flex-col bg-white rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-green-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            
             <div class="h-16 md:h-20 bg-gradient-to-r from-lime-600 to-green-600 flex items-center justify-between px-4 md:px-6 shrink-0 relative">
                 <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-300 to-transparent opacity-70"></div>
-
                 <h2 class="text-lg md:text-2xl lg:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
                     衛生福利部澎湖醫院
                 </h2>
-
-                <a href="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" target="_blank" 
-                   class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-3 md:px-4 py-1.5 rounded-full hover:bg-white hover:text-green-700 transition duration-300 shadow-sm font-medium">
+                <a href="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-3 md:px-4 py-1.5 rounded-full hover:bg-white hover:text-green-700 transition duration-300 shadow-sm font-medium">
                     開新視窗 ↗
                 </a>
             </div>
-
             <div class="flex-grow relative bg-slate-50">
                 <iframe src="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" class="clinic-frame absolute inset-0" title="部立澎湖看診進度"></iframe>
             </div>
@@ -124,30 +132,20 @@
     </footer>
 
     <script>
-        // 真實感計數器邏輯
+        // 真實感計數器邏輯 (維持不變)
         function updateCounter() {
             const now = new Date();
-            
-            // 1. 計算今天過了多少分鐘
             const startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
             const currentTimestamp = now.getTime();
             const minutesPassed = Math.floor((currentTimestamp - startOfDay) / 60000);
-            
-            // 2. 隨機波動參數
             const seed = now.getDate() * 100 + now.getMonth(); 
             const randomFlux = (seed % 5) + 2; 
-
-            // 3. 計算邏輯：(小時數 * 6) + (分鐘數 / 8) + 波動
             let totalCount = Math.floor((now.getHours() * 6) + (now.getMinutes() / 8) + randomFlux);
-
-            // 4. 強制歸零機制 (午夜時分)
             if (now.getHours() === 0 && now.getMinutes() < 10) {
                 totalCount = Math.floor(now.getMinutes() / 2) + 1;
             }
-
             document.getElementById('view-counter').innerText = totalCount.toLocaleString();
         }
-
         updateCounter();
         setInterval(updateCounter, 10000);
     </script>
