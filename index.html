@@ -23,11 +23,10 @@
                          4px 4px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* 跑馬燈文字描邊效果 (紅字 + 白框) */
-        /* 為了讓白框明顯，建議字體要夠粗 */
+        /* 修改：跑馬燈文字描邊效果 (白框加粗) */
         .text-stroke-white {
-            -webkit-text-stroke: 1.5px white; /* 加粗白框 */
-            text-stroke: 1.5px white;
+            -webkit-text-stroke: 2.5px white; /* 加粗到 2.5px */
+            text-stroke: 2.5px white;
             paint-order: stroke fill;
         }
 
@@ -64,14 +63,14 @@
         }
 
         /* 跑馬燈動畫 */
-        /* 設定為 10s (較快) 以符合您希望縮短間隔的需求 */
+        /* 修改：速度改為 25s (更慢，適合閱讀長句) */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 10s linear infinite;
+            animation: marquee 25s linear infinite;
             white-space: nowrap;
             padding-left: 100%;
         }
@@ -84,7 +83,7 @@
         
         <div class="w-full overflow-hidden bg-red-100 border-b-2 border-red-300 py-4 absolute top-0 left-0 z-30 shadow-md">
             <div class="animate-marquee font-black tracking-wider text-red-600 text-2xl md:text-3xl font-jhenghei text-stroke-white">
-                ⚠️ 勿相信網路投資，小心詐騙！保護自己的財產安全。
+                ⚠️ 網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交。&nbsp;&nbsp;&nbsp;&nbsp;⚠️ 天下沒有白吃的午餐，有錢人家何不自己賺，切勿相信網路投資。
             </div>
         </div>
 
@@ -145,34 +144,23 @@
     </footer>
 
     <script>
-        // 永久累積瀏覽計數器 (Local Storage)
-        // 特點：不會隨日期重置，會一直累加
+        // 永久累積瀏覽計數器
         function updateRealCounter() {
-            // 使用一個新的 Key 名稱，確保從現在開始重新計算 (符合"統計從網站啟動後"的要求)
             const storageKey = 'penghu_clinic_total_visits_v1';
-            
-            // 從瀏覽器取出目前的次數
             let currentCount = localStorage.getItem(storageKey);
             
-            // 如果是第一次訪問，初始化為 0
             if (!currentCount) {
                 currentCount = 0;
             }
             
-            // 累加 1
             let newCount = parseInt(currentCount) + 1;
-            
-            // 存回去
             localStorage.setItem(storageKey, newCount);
             
-            // 更新畫面
             document.getElementById('view-counter').innerText = newCount.toLocaleString();
         }
 
-        // 頁面載入時執行一次
         updateRealCounter();
         
-        // 額外檢查 (防止顯示延遲，但不重複累加)
         setInterval(() => {
             const storageKey = 'penghu_clinic_total_visits_v1';
             const count = localStorage.getItem(storageKey) || 1;
