@@ -23,10 +23,10 @@
                          4px 4px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* 跑馬燈文字描邊效果 (修改：加粗到 3px，讓白色外框更明顯) */
+        /* 跑馬燈文字描邊效果 (白框加粗) */
         .text-stroke-white {
-            -webkit-text-stroke: 3px white;
-            text-stroke: 3px white;
+            -webkit-text-stroke: 2.5px white;
+            text-stroke: 2.5px white;
             paint-order: stroke fill;
         }
 
@@ -63,8 +63,7 @@
         }
 
         /* 跑馬燈動畫 */
-        /* 修改：時間改為 90s */
-        /* 因為內容長度變為原來的2倍，為了維持原本的"視覺移動速度"，時間也必須加倍 */
+        /* 維持 90s (因為文字內容有重複串接，總長度較長) */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
@@ -92,16 +91,16 @@
             澎湖大型醫院<br class="block md:hidden">看診進度查詢網
         </h1>
 
-        <div class="mt-5 md:mt-0 md:absolute md:right-6 md:top-[60%] md:-translate-y-1/2 z-20 flex flex-col items-center justify-center gap-1 bg-yellow-50/95 backdrop-blur-md border-2 border-yellow-300 rounded-xl px-6 py-3 shadow-xl animate-pulse-slow">
+        <div class="mt-4 md:mt-0 md:absolute md:right-4 md:top-[60%] md:-translate-y-1/2 z-20 flex flex-col items-center justify-center gap-0.5 bg-yellow-50/95 backdrop-blur-md border-4 border-yellow-400 rounded-xl px-4 py-2 shadow-xl animate-pulse-slow">
             
-            <span class="text-base md:text-lg text-yellow-900 font-bold tracking-wider font-jhenghei">累積瀏覽次數</span>
+            <span class="text-sm md:text-base text-yellow-900 font-bold tracking-wider font-jhenghei">瀏覽次數</span>
             
             <div class="flex items-center gap-2">
-                <span class="relative flex h-3 w-3">
+                <span class="relative flex h-2.5 w-2.5">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-500 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-3 w-3 bg-yellow-600"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-600"></span>
                 </span>
-                <span id="view-counter" class="text-3xl md:text-4xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">0</span>
+                <span id="view-counter" class="text-2xl md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">0</span>
             </div>
         </div>
     </header>
