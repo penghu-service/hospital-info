@@ -23,10 +23,10 @@
                          4px 4px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* 跑馬燈文字描邊效果 (白框加粗) */
+        /* 跑馬燈文字描邊效果 (修改：加粗到 3px，讓白色外框更明顯) */
         .text-stroke-white {
-            -webkit-text-stroke: 2.5px white;
-            text-stroke: 2.5px white;
+            -webkit-text-stroke: 3px white;
+            text-stroke: 3px white;
             paint-order: stroke fill;
         }
 
@@ -63,14 +63,15 @@
         }
 
         /* 跑馬燈動畫 */
-        /* 維持 50s 慢速閱讀體驗 */
+        /* 修改：時間改為 90s */
+        /* 因為內容長度變為原來的2倍，為了維持原本的"視覺移動速度"，時間也必須加倍 */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 50s linear infinite;
+            animation: marquee 90s linear infinite;
             white-space: nowrap;
             padding-left: 100%;
         }
@@ -83,7 +84,7 @@
         
         <div class="w-full overflow-hidden bg-red-100 border-b-2 border-red-300 py-4 absolute top-0 left-0 z-30 shadow-md">
             <div class="animate-marquee font-black tracking-wider text-red-600 text-2xl md:text-3xl font-jhenghei text-stroke-white">
-                🈲網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交🈲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☢️天下沒有白吃的午餐，寧願相信世上有鬼，別相信網路股票、虛擬貨幣等投資人的嘴☢️
+                🈲網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交🈲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☢️天下沒有白吃的午餐，寧願相信世上有鬼，別相信網路股票、虛擬貨幣等投資人的嘴☢️&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🈲網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交🈲&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☢️天下沒有白吃的午餐，寧願相信世上有鬼，別相信網路股票、虛擬貨幣等投資人的嘴☢️
             </div>
         </div>
 
