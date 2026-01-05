@@ -30,11 +30,9 @@
             paint-order: stroke fill;
         }
 
-        /* 新增：文字描邊效果 (黑框 1.5px) - 用於左邊馬公分局 */
-        .text-stroke-black {
-            -webkit-text-stroke: 1.5px black;
-            text-stroke: 1.5px black;
-            paint-order: stroke fill;
+        /* 移除原本的黑框樣式，改用 CSS 文字陰影提升質感 */
+        .text-shadow-subtle {
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
         .clinic-frame {
@@ -89,8 +87,8 @@
         
         <div class="w-full h-16 bg-yellow-50 border-y-[6px] border-double border-red-700 absolute top-0 left-0 z-30 shadow-inner flex">
             
-            <div class="shrink-0 bg-red-200 h-full flex items-center justify-center px-4 md:px-6 border-r-4 border-red-300 shadow-md relative z-40">
-                <span class="text-xl md:text-2xl font-black font-kai text-white text-stroke-black tracking-widest">
+            <div class="shrink-0 bg-blue-900 h-full flex items-center justify-center px-4 md:px-6 border-r-4 border-blue-800 shadow-xl relative z-40">
+                <span class="text-xl md:text-2xl font-black font-kai text-white text-shadow-subtle tracking-widest">
                     馬公分局關心您
                 </span>
             </div>
