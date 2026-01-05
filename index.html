@@ -23,10 +23,11 @@
                          4px 4px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* 跑馬燈文字描邊效果 (新增：紅色文字+黑色邊框) */
-        .text-stroke-black {
-            -webkit-text-stroke: 1px black; /* Chrome/Safari/Edge */
-            text-stroke: 1px black;
+        /* 跑馬燈文字描邊效果 (紅字 + 白框) */
+        /* 為了讓白框明顯，建議字體要夠粗 */
+        .text-stroke-white {
+            -webkit-text-stroke: 1.5px white; /* 加粗白框 */
+            text-stroke: 1.5px white;
             paint-order: stroke fill;
         }
 
@@ -62,14 +63,15 @@
             animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
 
-        /* 跑馬燈動畫 (慢速 30s) */
+        /* 跑馬燈動畫 */
+        /* 設定為 10s (較快) 以符合您希望縮短間隔的需求 */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marquee 10s linear infinite;
             white-space: nowrap;
             padding-left: 100%;
         }
@@ -80,8 +82,8 @@
     <header class="h-auto min-h-[12rem] md:h-52 shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col items-center justify-center relative overflow-hidden px-4 py-4">
         <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
         
-        <div class="w-full overflow-hidden bg-red-50 border-b-2 border-red-300 py-4 absolute top-0 left-0 z-30 shadow-md">
-            <div class="animate-marquee font-black tracking-wider text-red-600 text-2xl md:text-3xl font-jhenghei text-stroke-black">
+        <div class="w-full overflow-hidden bg-red-100 border-b-2 border-red-300 py-4 absolute top-0 left-0 z-30 shadow-md">
+            <div class="animate-marquee font-black tracking-wider text-red-600 text-2xl md:text-3xl font-jhenghei text-stroke-white">
                 ⚠️ 勿相信網路投資，小心詐騙！保護自己的財產安全。
             </div>
         </div>
@@ -92,7 +94,7 @@
 
         <div class="mt-5 md:mt-0 md:absolute md:right-6 md:top-[60%] md:-translate-y-1/2 z-20 flex flex-col items-center justify-center gap-1 bg-yellow-50/95 backdrop-blur-md border-2 border-yellow-300 rounded-xl px-6 py-3 shadow-xl animate-pulse-slow">
             
-            <span class="text-base md:text-lg text-yellow-900 font-bold tracking-wider font-jhenghei">瀏覽次數</span>
+            <span class="text-base md:text-lg text-yellow-900 font-bold tracking-wider font-jhenghei">累積瀏覽次數</span>
             
             <div class="flex items-center gap-2">
                 <span class="relative flex h-3 w-3">
@@ -143,25 +145,24 @@
     </footer>
 
     <script>
-        // 真實瀏覽計數器 (Local Storage 版)
-        // 說明：此程式碼會記錄使用者的瀏覽器重新整理或開啟次數
-        // 不會像之前那樣根據時間顯示假數字，而是從 1 開始真實累加。
+        // 永久累積瀏覽計數器 (Local Storage)
+        // 特點：不會隨日期重置，會一直累加
         function updateRealCounter() {
-            // 定義一個儲存的 Key 名稱
-            const storageKey = 'penghu_clinic_real_visits';
+            // 使用一個新的 Key 名稱，確保從現在開始重新計算 (符合"統計從網站啟動後"的要求)
+            const storageKey = 'penghu_clinic_total_visits_v1';
             
-            // 從瀏覽器取出目前的次數 (如果沒有就是 null)
+            // 從瀏覽器取出目前的次數
             let currentCount = localStorage.getItem(storageKey);
             
-            // 如果是第一次來，或者被清除了，就從 0 開始
+            // 如果是第一次訪問，初始化為 0
             if (!currentCount) {
                 currentCount = 0;
             }
             
-            // 轉成數字並 +1 (代表這一次的瀏覽)
+            // 累加 1
             let newCount = parseInt(currentCount) + 1;
             
-            // 存回去瀏覽器
+            // 存回去
             localStorage.setItem(storageKey, newCount);
             
             // 更新畫面
@@ -170,6 +171,13 @@
 
         // 頁面載入時執行一次
         updateRealCounter();
+        
+        // 額外檢查 (防止顯示延遲，但不重複累加)
+        setInterval(() => {
+            const storageKey = 'penghu_clinic_total_visits_v1';
+            const count = localStorage.getItem(storageKey) || 1;
+            document.getElementById('view-counter').innerText = parseInt(count).toLocaleString();
+        }, 3000); 
     </script>
 
 </body>
