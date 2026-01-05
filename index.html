@@ -23,9 +23,9 @@
                          4px 4px 5px rgba(0, 0, 0, 0.1);
         }
 
-        /* 修改：跑馬燈文字描邊效果 (白框加粗) */
+        /* 跑馬燈文字描邊效果 (白框加粗) */
         .text-stroke-white {
-            -webkit-text-stroke: 2.5px white; /* 加粗到 2.5px */
+            -webkit-text-stroke: 2.5px white;
             text-stroke: 2.5px white;
             paint-order: stroke fill;
         }
@@ -63,14 +63,14 @@
         }
 
         /* 跑馬燈動畫 */
-        /* 修改：速度改為 25s (更慢，適合閱讀長句) */
+        /* 修改：文字變長了，將時間拉長至 45s 以維持緩慢的閱讀速度 */
         @keyframes marquee {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 25s linear infinite;
+            animation: marquee 45s linear infinite;
             white-space: nowrap;
             padding-left: 100%;
         }
@@ -83,7 +83,7 @@
         
         <div class="w-full overflow-hidden bg-red-100 border-b-2 border-red-300 py-4 absolute top-0 left-0 z-30 shadow-md">
             <div class="animate-marquee font-black tracking-wider text-red-600 text-2xl md:text-3xl font-jhenghei text-stroke-white">
-                ⚠️ 網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交。&nbsp;&nbsp;&nbsp;&nbsp;⚠️ 天下沒有白吃的午餐，有錢人家何不自己賺，切勿相信網路投資。
+                🈲🈲🈲網路無真愛，切勿相信Facebook、Instagram及Line等網路付費交友、援交。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;🈲🈲🈲天下沒有白吃午餐，有錢不會分你賺，切勿相信網路投資。
             </div>
         </div>
 
