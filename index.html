@@ -33,11 +33,27 @@
             paint-order: stroke fill;
         }
 
+        /* 手機版跑馬燈描邊稍微變細，以免字糊掉 */
+        @media (max-width: 768px) {
+            .text-stroke-white {
+                -webkit-text-stroke: 2px white;
+                text-stroke: 2px white;
+            }
+        }
+
         /* 文字黑色描邊效果 (黑框) - 用於左邊金字 */
         .text-stroke-black {
             -webkit-text-stroke: 1.2px black;
             text-stroke: 1.2px black;
             paint-order: stroke fill;
+        }
+        
+        /* 手機版黑框描邊變細 */
+        @media (max-width: 768px) {
+            .text-stroke-black {
+                -webkit-text-stroke: 0.5px black;
+                text-stroke: 0.5px black;
+            }
         }
 
         /* 文字紅色描邊效果 (紅框) - 用於大標題 */
@@ -45,6 +61,14 @@
             -webkit-text-stroke: 1.5px #dc2626;
             text-stroke: 1.5px #dc2626;
             paint-order: stroke fill;
+        }
+        
+        /* 手機版紅框描邊變細 */
+        @media (max-width: 768px) {
+            .text-stroke-red {
+                -webkit-text-stroke: 0.8px #dc2626;
+                text-stroke: 0.8px #dc2626;
+            }
         }
 
         /* CSS 文字陰影提升質感 */
@@ -100,86 +124,16 @@
 </head>
 <body class="bg-[#ecfdf5] flex flex-col h-screen overflow-hidden font-sans">
 
-    <header class="h-auto min-h-[8.5rem] md:h-40 shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col items-center justify-center relative overflow-hidden px-2 md:px-4 py-2 md:py-4">
+    <header class="h-auto min-h-[7.5rem] md:h-40 shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col items-center justify-center relative overflow-hidden px-2 md:px-4 py-2 md:py-4">
         <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
         
         <div class="w-full h-12 md:h-16 bg-yellow-50 border-y-[4px] md:border-y-[6px] border-double border-red-700 absolute top-0 left-0 z-30 shadow-inner flex">
             
-            <div class="shrink-0 bg-blue-100 h-full flex items-center justify-center px-1 md:px-3 shadow-xl relative z-40">
+            <div class="shrink-0 bg-blue-100 h-full w-14 md:w-auto flex flex-col md:flex-row items-center justify-center px-0.5 md:px-3 shadow-xl relative z-40">
                 <img src="https://drive.google.com/thumbnail?id=1I8jwcPPK6Wq2qUlBHCO4VBjlxjOkwvLG&sz=w500" 
                      onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ROC_Police_Dove_Logo.svg/200px-ROC_Police_Dove_Logo.svg.png'"
                      referrerpolicy="no-referrer"
                      alt="刑警徽章" 
-                     class="h-5 md:h-9 w-auto mr-1 object-contain">
+                     class="h-4 md:h-9 w-auto mb-0.5 md:mb-0 md:mr-1 object-contain">
                 
-                <span class="text-sm md:text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide whitespace-nowrap leading-none mt-0.5">
-                    馬公分局關心您
-                </span>
-            </div>
-
-            <div class="flex-grow overflow-hidden relative flex items-center">
-                <div class="animate-marquee font-black tracking-wider text-red-600 text-lg md:text-3xl font-jhenghei text-stroke-white">
-                    🈲天下沒有白吃的午餐，寧願相信世上有鬼，也別相信網路上，提供投資股票、虛擬貨幣等不明人士人的嘴☢️&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;☢️天下沒有白吃的午餐，寧願相信世上有鬼，也別相信網路上，提供投資股票、虛擬貨幣等不明人士人的嘴☢️
-                </div>
-            </div>
-        </div>
-
-        <h1 class="text-lg md:text-5xl font-black text-white font-kai text-3d-shadow text-stroke-red tracking-widest text-center z-10 flex-grow leading-tight md:leading-normal py-2 md:py-4 mt-14 md:mt-16 whitespace-nowrap">
-            澎湖縣大型醫院即時看診進度網站
-        </h1>
-
-        <div class="mt-2 md:mt-0 md:absolute md:right-4 md:top-[60%] md:-translate-y-1/2 z-20 flex flex-col items-center justify-center gap-0.5 bg-yellow-50/95 backdrop-blur-md border-2 md:border-4 border-yellow-400 rounded-xl px-3 md:px-4 py-1 md:py-2 shadow-xl animate-pulse-slow">
-            <span class="text-xs md:text-base text-yellow-900 font-bold tracking-wider font-jhenghei">瀏覽次數</span>
-            <div class="flex items-center gap-2">
-                <span class="relative flex h-2 w-2 md:h-2.5 md:w-2.5">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-500 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 md:h-2.5 md:w-2.5 bg-yellow-600"></span>
-                </span>
-                
-                <span id="busuanzi_value_site_pv" class="text-xl md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">
-                    <svg class="animate-spin h-4 w-4 md:h-5 md:w-5 text-yellow-600 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                </span>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-grow flex flex-col md:flex-row p-2 md:p-4 gap-3 md:gap-6 relative">
-        
-        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-teal-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            <div class="h-14 md:h-20 bg-gradient-to-r from-cyan-600 to-teal-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent opacity-70"></div>
-                <h2 class="text-lg md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
-                    三總澎湖分院
-                </h2>
-                <a href="https://www.tsghph811.org.tw/" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-2 md:px-4 py-1 md:py-1.5 rounded-full hover:bg-white hover:text-teal-700 transition duration-300 shadow-sm font-medium">
-                    開新視窗 ↗
-                </a>
-            </div>
-            <div class="flex-grow relative bg-slate-50">
-                <iframe src="https://www.tsghph811.org.tw/" class="clinic-frame absolute inset-0" title="三總澎湖看診進度"></iframe>
-            </div>
-        </section>
-
-        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-green-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            <div class="h-14 md:h-20 bg-gradient-to-r from-lime-600 to-green-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-300 to-transparent opacity-70"></div>
-                <h2 class="text-base md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
-                    衛生福利部澎湖醫院
-                </h2>
-                <a href="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-2 md:px-4 py-1 md:py-1.5 rounded-full hover:bg-white hover:text-green-700 transition duration-300 shadow-sm font-medium">
-                    開新視窗 ↗
-                </a>
-            </div>
-            <div class="flex-grow relative bg-slate-50">
-                <iframe src="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" class="clinic-frame absolute inset-0" title="部立澎湖看診進度"></iframe>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="text-center text-emerald-800/40 text-xs py-2 font-kai tracking-widest">
-        PENGHU MEDICAL DASHBOARD
-    </footer>
-
-</body>
-</html>
+                <span class="text-[10px] md:text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide text-
