@@ -132,7 +132,7 @@
                      onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ROC_Police_Dove_Logo.svg/200px-ROC_Police_Dove_Logo.svg.png'"
                      referrerpolicy="no-referrer"
                      alt="刑警徽章" 
-                     class="h-4 md:h-9 w-auto mb-0.5 md:mb-0 md:mr-1 object-contain">
+                     class="h-4 mb-0.5 md:mb-0 md:h-9 w-auto md:mr-1 object-contain">
                 
                 <div class="flex flex-col justify-center md:block text-center md:text-left">
                     <span class="block md:inline text-[11px] md:text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide leading-none whitespace-nowrap">
@@ -166,9 +166,21 @@
                   <span class="relative inline-flex rounded-full h-1.5 w-1.5 md:h-2.5 md:w-2.5 bg-yellow-600"></span>
                 </span>
                 
-                <span id="busuanzi_value_site_pv" class="text-base md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">
-                    <svg class="animate-spin h-3 w-3 md:h-5 md:w-5 text-yellow-600 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <span id="busuanzi_container_site_pv" style="display:none">
+                    <span id="busuanzi_value_site_pv" class="text-base md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">
+                        <svg class="animate-spin h-3 w-3 md:h-5 md:w-5 text-yellow-600 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                    </span>
                 </span>
+                <script>
+                   // 簡單檢測如果不蒜子沒載入，顯示 "--"
+                   setTimeout(function(){
+                       if(document.getElementById("busuanzi_value_site_pv").innerHTML.includes("svg")) {
+                           // 這裡可以選擇不動作，或者顯示一個預設值，例如 '0'
+                       }
+                       // 強制顯示容器，以免因腳本載入慢而隱藏
+                       document.getElementById("busuanzi_container_site_pv").style.display = "inline";
+                   }, 1000);
+                </script>
             </div>
         </div>
     </header>
@@ -207,9 +219,4 @@
 
     </main>
 
-    <footer class="text-center text-emerald-800/40 text-xs py-2 font-kai tracking-widest">
-        PENGHU MEDICAL DASHBOARD
-    </footer>
-
-</body>
-</html>
+    <footer class="text-center text-emerald-800/40 text-xs py-2 font-kai tracking-
