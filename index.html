@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>澎湖縣大型醫院即時看診進度網站</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
     <style>
         /* 定義字體 */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&display=swap');
@@ -124,7 +127,10 @@
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-500 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-yellow-600"></span>
                 </span>
-                <span id="view-counter" class="text-2xl md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">0</span>
+                
+                <span id="busuanzi_value_site_pv" class="text-2xl md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">
+                    <svg class="animate-spin h-5 w-5 text-yellow-600 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                </span>
             </div>
         </div>
     </header>
@@ -167,30 +173,5 @@
         PENGHU MEDICAL DASHBOARD
     </footer>
 
-    <script>
-        // 永久累積瀏覽計數器
-        function updateRealCounter() {
-            const storageKey = 'penghu_clinic_total_visits_v1';
-            let currentCount = localStorage.getItem(storageKey);
-            
-            if (!currentCount) {
-                currentCount = 0;
-            }
-            
-            let newCount = parseInt(currentCount) + 1;
-            localStorage.setItem(storageKey, newCount);
-            
-            document.getElementById('view-counter').innerText = newCount.toLocaleString();
-        }
-
-        updateRealCounter();
-        
-        setInterval(() => {
-            const storageKey = 'penghu_clinic_total_visits_v1';
-            const count = localStorage.getItem(storageKey) || 1;
-            document.getElementById('view-counter').innerText = parseInt(count).toLocaleString();
-        }, 3000); 
-    </script>
-
-</body>
+    </body>
 </html>
