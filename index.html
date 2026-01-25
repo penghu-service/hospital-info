@@ -5,45 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>澎湖縣大型醫院即時看診進度網站</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     <style>
-        /* 定義字體 */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&display=swap');
         
         .font-kai { font-family: "BiauKai", "DFKai-SB", "KaiTi", "KaiTi_GB2312", "Noto Serif TC", serif; }
         .font-jhenghei { font-family: "Microsoft JhengHei", "Microsoft YaHei", sans-serif; }
         
-        /* 文字立體陰影效果 */
-        .text-3d-shadow { 
-            text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15), 
-                         4px 4px 5px rgba(0, 0, 0, 0.1); 
-        }
-        
-        /* 強化版：跑馬燈文字描邊效果 (極粗體+重白框) */
-        .text-stroke-white-heavy {
-            -webkit-text-stroke: 4px white;
-            text-stroke: 4px white;
+        /* 文字立體陰影 */
+        .text-3d-shadow { text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15), 4px 4px 5px rgba(0, 0, 0, 0.1); }
+
+        /* 馬公分局專用：黃字黑框 */
+        .text-stroke-black {
+            -webkit-text-stroke: 1.5px black;
+            text-stroke: 1.5px black;
             paint-order: stroke fill;
+        }
+
+        /* 跑馬燈專用：極粗白框 */
+        .marquee-heavy-stroke {
             font-weight: 900 !important;
+            -webkit-text-stroke: 8px white;
+            text-stroke: 8px white;
+            paint-order: stroke fill;
         }
 
         @media (max-width: 768px) {
-            .text-stroke-white-heavy {
-                -webkit-text-stroke: 2.5px white;
-                text-stroke: 2.5px white;
-            }
+            .marquee-heavy-stroke { -webkit-text-stroke: 4px white; text-stroke: 4px white; }
+            .text-stroke-black { -webkit-text-stroke: 1px black; text-stroke: 1px black; }
         }
 
-        /* 其他描邊效果 */
-        .text-stroke-black { -webkit-text-stroke: 1.2px black; text-stroke: 1.2px black; paint-order: stroke fill; }
-        .text-stroke-red { -webkit-text-stroke: 1.5px #dc2626; text-stroke: 1.5px #dc2626; paint-order: stroke fill; }
+        .msg-red { color: #dc2626 !important; }
+        .msg-blue { color: #1d4ed8 !important; }
 
-        /* 內容框架設定 */
         .clinic-frame { width: 100%; height: 100%; border: none; background-color: #ffffff; }
         
-        /* 隱藏捲軸 */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius:
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 180s linear infinite;
+            white-space: nowrap;
+            animation-delay: -90s; 
+        }
+    </style>
+</head>
+<body class="bg-[#ecfdf5] flex flex-col h-screen overflow-hidden font-sans">
+
+    <header class="h-auto shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col relative overflow-hidden pb-2">
+        <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
+        
+        <div class="w-full h-12 md:h-16 bg-yellow-50 border-y-[4px] md:border-y-[6px] border-double border-red-700 relative z-30 shadow-inner flex shrink-0">
+            
+            <div class="shrink-0 bg-blue-100 h-full w-auto flex flex-col md:flex-row items-center justify-center px-1.5 md:px-3 shadow-xl relative z-40">
+                <img src="https://drive.google.com/thumbnail?id=1I8jwcPPK6Wq2qUlBHCO4VBjlxjOkwvLG&sz=w500" 
+                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ROC_Police_Dove_Logo.svg/200px-ROC_Police_Dove_Logo.svg.png'"
+                     referrerpolicy="no-referrer" alt="刑警徽章" class="h-4 mb-0.5 md:mb-0 md:h-9 w-auto md:mr-1 object-contain">
+                <div class="flex flex-col justify-center md:block text-center md:text-left">
+                    <span class="block md:inline text-[11px] md:text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide leading-none whitespace-nowrap">馬公分局</span>
+                    <span class="hidden md:inline text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide leading-none whitespace-nowrap">關心您</span>
+                </div>
+            </div>
+
+            <div class="flex-grow overflow-hidden relative flex items-center">
+                <div class="animate-marquee tracking-wider text-base md:text-4xl font-jhenghei">
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 1.一聽、二掛、三查證，詐騙遠離不近身。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-blue">🛡️ 2.檢警不會監管帳戶，聽到「監管」立刻掛斷！</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 3.親友借錢先查證，視訊通話認本人。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-blue">🛡️ 4.不明簡訊勿輕信，連結點了錢難保。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 5.千騙萬騙，離不開要您「ATM轉帳」或「面交現金」。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-blue">🛡️ 6.「穩賺不賠、保證獲利」全是假！切勿聽信網路投資群組。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 7.不要打開要您「ATM轉帳」或「面交現金」的不明網路連結。</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-blue">🛡️ 8.警察絕對不會跟你要存摺、印章！說要『幫你保管錢』的都是騙子，馬上掛電話！</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 9.「親戚朋友用 LINE 借錢？一定要『打電話聽聲音』，沒看到人絕對不可以匯錢！」</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-blue">🛡️ 10.「奇怪的簡訊不要理！裡面的網址『千萬不可以按』，按下去手機會中毒，錢會被偷走。」</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="marquee-heavy-stroke msg-red">🛡️ 11.「電話裡講到錢，就是怪！立刻掛掉電話，打 165 問警察最安全。」</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+
+        <div class="relative w-full flex items-center justify-center mt-1 md:mt-4 z-40 px-2">
+            <h1 class="w-full text-lg md:text-5xl font-black text-white font-kai text-3d-shadow tracking-widest text-center leading-tight whitespace-nowrap" style="-webkit-text-stroke: 1.5px #dc2626;">
+                澎湖縣大型醫院<br class="block md:hidden">即時看診進度網站
+            </h1>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col md:flex-row p-2 md:p-4 gap-3 md:gap-6 relative">
+        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-teal-100">
+            <div class="h-14 md:h-20 bg-gradient-to-r from-cyan-600 to-teal-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
+                <h2 class="text-lg md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">三總澎湖分院</h2>
+                <a href="https://www.tsghph811.org.tw/" target="_blank" class="shrink-0 bg-white/20 text-white text-xs md:px-4 py-1 rounded-full">開新視窗 ↗</a>
+            </div>
+            <div class="flex-grow relative bg-slate-50">
+                <iframe src="https://www.tsghph811.org.tw/" class="clinic-frame absolute inset-0"></iframe>
+            </div>
+        </section>
+
+        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-xl overflow-hidden border border-green-100">
+            <div class="h-14 md:h-20 bg-gradient-to-r from-lime-600 to-green-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
+                <h2 class="text-base md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">衛生福利部澎湖醫院</h2>
+                <a href="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" target="_blank" class="shrink-0 bg-white/20 text-white text-xs md:px-4 py-1 rounded-full">開新視窗 ↗</a>
+            </div>
+            <div class="flex-grow relative bg-slate-50">
+                <iframe src="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" class="clinic-frame absolute inset-0"></iframe>
+            </div>
+        </section>
+    </main>
+    <footer class="text-center text-emerald-800/40 text-xs py-2 font-kai tracking-widest">PENGHU MEDICAL DASHBOARD</footer>
+</body>
+</html>
