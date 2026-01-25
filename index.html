@@ -12,215 +12,38 @@
         /* 定義字體 */
         @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&display=swap');
         
-        .font-kai {
-            font-family: "BiauKai", "DFKai-SB", "KaiTi", "KaiTi_GB2312", "Noto Serif TC", serif;
-        }
-
-        .font-jhenghei {
-            font-family: "Microsoft JhengHei", "Microsoft YaHei", sans-serif;
-        }
-
+        .font-kai { font-family: "BiauKai", "DFKai-SB", "KaiTi", "KaiTi_GB2312", "Noto Serif TC", serif; }
+        .font-jhenghei { font-family: "Microsoft JhengHei", "Microsoft YaHei", sans-serif; }
+        
         /* 文字立體陰影效果 */
-        .text-3d-shadow {
+        .text-3d-shadow { 
             text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.15), 
-                         4px 4px 5px rgba(0, 0, 0, 0.1);
+                         4px 4px 5px rgba(0, 0, 0, 0.1); 
         }
-
-        /* 跑馬燈文字描邊效果 (白框) */
-        .text-stroke-white {
-            -webkit-text-stroke: 3px white;
-            text-stroke: 3px white;
+        
+        /* 強化版：跑馬燈文字描邊效果 (極粗體+重白框) */
+        .text-stroke-white-heavy {
+            -webkit-text-stroke: 4px white;
+            text-stroke: 4px white;
             paint-order: stroke fill;
+            font-weight: 900 !important;
         }
 
         @media (max-width: 768px) {
-            .text-stroke-white {
-                -webkit-text-stroke: 2px white;
-                text-stroke: 2px white;
+            .text-stroke-white-heavy {
+                -webkit-text-stroke: 2.5px white;
+                text-stroke: 2.5px white;
             }
         }
 
-        /* 文字黑色描邊效果 (黑框) */
-        .text-stroke-black {
-            -webkit-text-stroke: 1.2px black;
-            text-stroke: 1.2px black;
-            paint-order: stroke fill;
-        }
+        /* 其他描邊效果 */
+        .text-stroke-black { -webkit-text-stroke: 1.2px black; text-stroke: 1.2px black; paint-order: stroke fill; }
+        .text-stroke-red { -webkit-text-stroke: 1.5px #dc2626; text-stroke: 1.5px #dc2626; paint-order: stroke fill; }
+
+        /* 內容框架設定 */
+        .clinic-frame { width: 100%; height: 100%; border: none; background-color: #ffffff; }
         
-        @media (max-width: 768px) {
-            .text-stroke-black {
-                -webkit-text-stroke: 0.5px black;
-                text-stroke: 0.5px black;
-            }
-        }
-
-        /* 文字紅色描邊效果 (紅框) */
-        .text-stroke-red {
-            -webkit-text-stroke: 1.5px #dc2626;
-            text-stroke: 1.5px #dc2626;
-            paint-order: stroke fill;
-        }
-        
-        @media (max-width: 768px) {
-            .text-stroke-red {
-                -webkit-text-stroke: 0.8px #dc2626;
-                text-stroke: 0.8px #dc2626;
-            }
-        }
-
-        /* CSS 文字陰影 */
-        .text-shadow-subtle {
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .clinic-frame {
-            width: 100%;
-            height: 100%;
-            border: none;
-            background-color: #ffffff;
-        }
-
-        /* 隱藏捲軸但保留功能 */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: transparent; 
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1; 
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8; 
-        }
-
-        /* 計數器動畫 */
-        @keyframes pulse-subtle {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.95; }
-        }
-        .animate-pulse-slow {
-            animation: pulse-subtle 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-
-        /* 跑馬燈動畫 */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-        .animate-marquee {
-            display: inline-block;
-            animation: marquee 120s linear infinite; /* 配合文字變多，時間調慢為 120s */
-            white-space: nowrap;
-            padding-left: 0;
-            animation-delay: -5s;
-        }
-    </style>
-</head>
-<body class="bg-[#ecfdf5] flex flex-col h-screen overflow-hidden font-sans">
-
-    <header class="h-auto shrink-0 bg-gradient-to-r from-emerald-800 via-teal-700 to-emerald-800 shadow-2xl z-50 flex flex-col relative overflow-hidden pb-2">
-        <div class="absolute top-0 left-0 w-full h-full bg-white opacity-5 mix-blend-overlay"></div>
-        
-        <div class="w-full h-12 md:h-16 bg-yellow-50 border-y-[4px] md:border-y-[6px] border-double border-red-700 relative z-30 shadow-inner flex shrink-0">
-            
-            <div class="shrink-0 bg-blue-100 h-full w-auto flex flex-col md:flex-row items-center justify-center px-1.5 md:px-3 shadow-xl relative z-40">
-                
-                <img src="https://drive.google.com/thumbnail?id=1I8jwcPPK6Wq2qUlBHCO4VBjlxjOkwvLG&sz=w500" 
-                     onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/ROC_Police_Dove_Logo.svg/200px-ROC_Police_Dove_Logo.svg.png'"
-                     referrerpolicy="no-referrer"
-                     alt="刑警徽章" 
-                     class="h-4 mb-0.5 md:mb-0 md:h-9 w-auto md:mr-1 object-contain">
-                
-                <div class="flex flex-col justify-center md:block text-center md:text-left">
-                    <span class="block md:inline text-[11px] md:text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide leading-none whitespace-nowrap">
-                        馬公分局
-                    </span>
-                    <span class="hidden md:inline text-3xl font-black font-kai text-yellow-400 text-stroke-black tracking-wide leading-none whitespace-nowrap">
-                        關心您
-                    </span>
-                </div>
-            </div>
-
-            <div class="flex-grow overflow-hidden relative flex items-center">
-                <div class="animate-marquee font-black tracking-wider text-red-600 text-base md:text-3xl font-jhenghei text-stroke-white">
-                    📢 澎湖縣大型醫院即時看診進度整合網：目前已整合「部立澎湖醫院」與「三總澎湖分院」資訊，請多加利用。&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    🛡️ 馬公分局提醒您：天下沒有白吃的午餐，投資應循正當管道，切勿輕信網路不明人士提供的股票、虛擬貨幣投資訊息！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    🩺 溫馨提醒：看診進度僅供參考，實際叫號請以醫院現場為準。建議可將本站加入「我的最愛」方便隨時查詢。
-                </div>
-            </div>
-        </div>
-
-        <div class="relative w-full flex items-center justify-center mt-1 md:mt-4 z-40 px-2">
-            
-            <h1 class="w-full text-lg md:text-5xl font-black text-white font-kai text-3d-shadow text-stroke-red tracking-widest text-center leading-tight whitespace-nowrap">
-                澎湖縣大型醫院<br class="block md:hidden">即時看診進度網站
-            </h1>
-
-            <div class="absolute right-1 md:right-4 top-1/2 -translate-y-1/2 flex flex-col items-center justify-center gap-0 md:gap-0.5 bg-yellow-50/95 backdrop-blur-md border md:border-4 border-yellow-400 rounded-lg md:rounded-xl px-1.5 md:px-4 py-0.5 md:py-2 shadow-xl animate-pulse-slow scale-90 md:scale-100 origin-right">
-                
-                <span class="text-[9px] md:text-base text-yellow-900 font-bold tracking-wider font-jhenghei">瀏覽次數</span>
-                
-                <div class="flex items-center gap-1 md:gap-2">
-                    <span class="relative flex h-1 w-1 md:h-2.5 md:w-2.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-500 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-1 w-1 md:h-2.5 md:w-2.5 bg-yellow-600"></span>
-                    </span>
-                    
-                    <span id="busuanzi_container_site_pv" style="display:none">
-                        <span id="busuanzi_value_site_pv" class="text-sm md:text-3xl font-black text-yellow-900 font-jhenghei tracking-widest leading-none">
-                            <svg class="animate-spin h-2.5 w-2.5 md:h-5 md:w-5 text-yellow-600 inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-                        </span>
-                    </span>
-                    <script>
-                    setTimeout(function(){
-                        document.getElementById("busuanzi_container_site_pv").style.display = "inline";
-                    }, 1000);
-                    </script>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-grow flex flex-col md:flex-row p-2 md:p-4 gap-3 md:gap-6 relative">
-        
-        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-teal-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            <div class="h-14 md:h-20 bg-gradient-to-r from-cyan-600 to-teal-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-400 to-transparent opacity-70"></div>
-                <h2 class="text-lg md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
-                    三總澎湖分院
-                </h2>
-                <a href="https://www.tsghph811.org.tw/" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-2 md:px-4 py-1 md:py-1.5 rounded-full hover:bg-white hover:text-teal-700 transition duration-300 shadow-sm font-medium">
-                    開新視窗 ↗
-                </a>
-            </div>
-            <div class="flex-grow relative bg-slate-50">
-                <iframe src="https://www.tsghph811.org.tw/" class="clinic-frame absolute inset-0" title="三總澎湖看診進度"></iframe>
-            </div>
-        </section>
-
-        <section class="flex-1 flex flex-col bg-white rounded-2xl md:rounded-3xl shadow-[0_10px_40px_-10px_rgba(0,0,0,0.15)] overflow-hidden border border-green-100 transition-all hover:shadow-[0_20px_50px_-10px_rgba(0,0,0,0.2)]">
-            <div class="h-14 md:h-20 bg-gradient-to-r from-lime-600 to-green-600 flex items-center justify-between px-3 md:px-6 shrink-0 relative">
-                <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-300 to-transparent opacity-70"></div>
-                <h2 class="text-base md:text-3xl text-white font-kai font-bold text-3d-shadow tracking-wider truncate">
-                    衛生福利部澎湖醫院
-                </h2>
-                <a href="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" target="_blank" class="shrink-0 bg-white/20 backdrop-blur-sm border border-white/30 text-white text-xs md:text-sm px-2 md:px-4 py-1 md:py-1.5 rounded-full hover:bg-white hover:text-green-700 transition duration-300 shadow-sm font-medium">
-                    開新視窗 ↗
-                </a>
-            </div>
-            <div class="flex-grow relative bg-slate-50">
-                <iframe src="https://netreg.pngh.mohw.gov.tw/ClinicProgress?hosp=1" class="clinic-frame absolute inset-0" title="部立澎湖看診進度"></iframe>
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="text-center text-emerald-800/40 text-xs py-2 font-kai tracking-widest">
-        PENGHU MEDICAL DASHBOARD
-    </footer>
-
-</body>
-</html>
+        /* 隱藏捲軸 */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius:
